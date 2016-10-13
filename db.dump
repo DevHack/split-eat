@@ -1,0 +1,3 @@
+use spliteatdb
+db.demo.insert({"name": "demo"})
+show dbs
