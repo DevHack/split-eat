@@ -6,6 +6,7 @@
         Schema = mongoose.Schema,
         transactionSchema = new Schema({
             transactionDate: {type: Date, required: true},
+            transactionid: {type: Number, unique: true},
             description: {type: String},
             cost: {type: Number, required: true},
             payee: [{type: String, required: true}],
@@ -13,8 +14,16 @@
                 name: String,
                 contribution: Number
             }],
-            groupId: String
+            groupieid: {type: String, required: true}
         });
+
+    transactionSchema.pre('save', function(next) {
+        console.log("hochhe to!!!");
+        mongoose.connection.db.eval('getNextSequenceValue("transactionid")', (function(err, returnValue){
+            this.transactionid = returnValue;
+            next();
+        }).bind(this));
+    });
 
     module.exports = mongoose.model("transaction", transactionSchema);
 }());

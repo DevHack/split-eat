@@ -1,3 +1,86 @@
 use spliteatdb
-db.demo.insert({"name": "demo"})
+db.system.js.insert({
+    "_id": "getNextSequenceValue",
+    "value": function getNextSequenceValue(sequenceName) {
+
+        var sequenceDocument = db.counters.findAndModify({
+            query: {
+                _id: sequenceName
+            },
+            update: {
+                $inc: {
+                    sequence_value: 1
+                }
+            },
+            new: true
+        });
+
+        return sequenceDocument.sequence_value;
+    }
+})
+db.loadServerScripts()
+db.createCollection("counters")
+db.counters.insert([{
+    "_id": "userid",
+    "sequence_value": 0
+}, {
+    "_id": "groupieid",
+    "sequence_value": 0
+}, {
+    "_id": "transactionid",
+    "sequence_value": 0
+}])
+
+db.users.insert([{
+    "userid": getNextSequenceValue("userid"),
+    "name": "Debayan",
+    "groupies": [{
+        "groupieid": 1,
+        "outstanding": 0
+    }]
+}, {
+    "userid": getNextSequenceValue("userid"),
+    "name": "IRC",
+    "groupies": [{
+        "groupieid": 1,
+        "outstanding": 0
+    }]
+}, {
+    "userid": getNextSequenceValue("userid"),
+    "name": "Arnab",
+    "groupies": [{
+        "groupieid": 1,
+        "outstanding": 0
+    }]
+}, {
+    "userid": getNextSequenceValue("userid"),
+    "name": "Swarnadipa",
+    "groupies": [{
+        "groupieid": 1,
+        "outstanding": 0
+    }]
+}, {
+    "userid": getNextSequenceValue("userid"),
+    "name": "Debjyoti",
+    "groupies": [{
+        "groupieid": 1,
+        "outstanding": 0
+    }]
+}])
+
+db.groupies.insert({
+    groupieid: getNextSequenceValue("groupieid"),
+    name: "Bhuribhoj",
+    members: [{
+        userid: 1
+    }, {
+        userid: 2
+    }, {
+        userid: 3
+    }, {
+        userid: 4
+    }, {
+        userid: 5
+    }]
+})
 show dbs
