@@ -1,5 +1,8 @@
-angular.module('MyApp', ['ngMaterial', 'ngMessages', 'material.svgAssetsCache'])
+var splitEat = angular.module('Split-eat', ['ngMaterial', 'ngMessages']);
 
-    .controller('AppCtrl', function ($scope) {
-
-    });
+splitEat.controller('splitEatController', function ($scope) {
+    $scope.init = function () {
+        console.log("init");
+    };
+    $scope.init();
+});
