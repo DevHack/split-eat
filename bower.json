@@ -1,0 +1,22 @@
+{
+  "name": "split-eat",
+  "description": "App for distributing expenses",
+  "main": "server.js",
+  "authors": [
+    "DevHack"
+  ],
+  "license": "ISC",
+  "homepage": "https://github.com/DebjyotiPaul16/split-eat",
+  "moduleType": [],
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "devDependencies": {
+    "angular": "^1.5.8",
+    "angular-material": "^1.1.1"
+  }
+}
