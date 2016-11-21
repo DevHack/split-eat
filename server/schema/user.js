@@ -15,10 +15,14 @@
     
     userSchema.pre('save', function(next) {
         console.log("hochhe to!!!");
-        mongoose.connection.db.eval('getNextSequenceValue("userid")', (function(err, returnValue){
-            this.userid = returnValue;
+        if(this.userid){
             next();
-        }).bind(this));
+        }else{
+            mongoose.connection.db.eval('getNextSequenceValue("userid")', (function(err, returnValue){
+                this.userid = returnValue;
+                next();
+            }).bind(this));
+        }
     });
     module.exports = mongoose.model("user", userSchema);
 }());

@@ -4,7 +4,7 @@
 var express = require('express'),
     app = express(),
     connector = require('./server/connector'),
-    Transaction = require("./server/schema/transaction"),
+    transactionHandler = require('./server/handler/transaction_handler'),
     User = require("./server/schema/user");
     bodyparser = require('body-parser');
 /**
@@ -14,16 +14,6 @@ connector.connect();
 app.use(express.static('client'));
 app.use(bodyparser.json());
 
-function save(groupieId){
-    var transaction = new Transaction();
-    transaction.transactionDate = new Date();
-    transaction.cost = 5000;
-    transaction.payee =["Arnab"];
-    transaction.groupieid = groupieId;
-// Saving it to the database.
-    transaction.save(function (err) {if (err) console.log ('Error on save!'); console.log("saved successfully")});
-}
-
 var server = app.listen("4000", function () {
     "use strict";
     console.log("Server Running on 4000");
@@ -32,18 +22,7 @@ var server = app.listen("4000", function () {
  * define APIs
  */
 app.post("/saveTransaction/:groupieId", function(req , res){
-    console.log("groupId : "+req.params.groupieId);
-    var groupieId = req.params.groupieId;
-    console.log(req.body);
-    var transaction = new Transaction();
-    transaction.transactionDate = new Date();
-    transaction.cost = 5000;
-    transaction.payee =["Arnab"];
-    transaction.groupieid = groupieId;
-// Saving it to the database.
-    transaction.save(function (err) {if (err) console.log ('Error on save!'); console.log("saved successfully")});
-    res.send("saved");
-    res.end();
+    transactionHandler.saveTransaction(req, res);
 });
 
 app.get("/user", function(req, res){
