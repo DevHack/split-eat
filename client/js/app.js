@@ -1,8 +1,13 @@
-var splitEat = angular.module('Split-eat', ['ngMaterial', 'ngMessages']);
+var app = angular.module('SplitEatApp', ['ngMaterial', 'ngMdIcons']);
 
-splitEat.controller('splitEatController', function ($scope) {
-    $scope.init = function () {
-        console.log("init");
-    };
-    $scope.init();
+app.config(function ($mdThemingProvider) {
+    $mdThemingProvider.theme('default')
+        .primaryPalette('grey', {
+            "default": '900'
+        })
+        .accentPalette('blue', {
+            "default": "900"
+        })
 });
+
+

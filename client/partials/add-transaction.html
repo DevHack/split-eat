@@ -1,0 +1,73 @@
+<md-dialog>
+
+    <form name="transactionForm" class="transaction-container" data-ng-submit="vm.handleSubmit()">
+
+        <md-toolbar>
+            <div class="md-toolbar-tools">
+                <h2>Add transaction</h2>
+                <span flex></span>
+                <md-button type="button" class="md-icon-button" ng-click="vm.handleCancel(); $event.stopPropagation();">
+                    <ng-md-icon icon="close"></ng-md-icon>
+                </md-button>
+            </div>
+        </md-toolbar>
+
+        <md-dialog-content class="md-padding">
+
+            <md-input-container flex="" class="input-field">
+                <label>Description</label>
+                <input ng-model="vm.descrption" required>
+            </md-input-container>
+
+            <md-input-container flex="" class="input-field">
+                <label>Cost</label>
+                <input ng-model="vm.cost" type="password" required>
+            </md-input-container>
+            <div class="payee-container">
+                <md-label class="label" layout="row"><b>Payee</b></md-label>
+                <div layout="row" layout-wrap>
+                    <div flex="100" flex-gt-sm="50" layout="column">
+                        <div>
+                            <div layout="row" layout-wrap flex>
+                                <div flex="50" ng-repeat="item in items.data">
+                                    <md-checkbox ng-click="toggle(item, selected)">
+                                        {{ item.name }}
+                                    </md-checkbox>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <md-divider></md-divider>
+            <div class="participant-container">
+                <md-label class="label" layout="row"><b>Participants</b></md-label>
+                <div layout="row" layout-wrap>
+                    <div flex="100" flex-gt-sm="50" layout="column">
+                        <div>
+                            <div layout="row" layout-wrap flex>
+                                <div flex="50" ng-repeat="item in items.data">
+                                    <md-checkbox ng-click="toggle(item, selected)">
+                                        {{ item.name }}
+                                    </md-checkbox>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="md-actions">
+                <md-button type="submit" class="md-primary"
+                           ng-class="{'md-raised md-hue-1': (loginForm.$dirty && loginForm.$valid) }"
+                           aria-label="OK">OK
+                </md-button>
+
+                <md-button type="button" ng-click="vm.handleCancel(); $event.stopPropagation();"
+                           aria-label="Cancel">Cancel
+                </md-button>
+            </div>
+        </md-dialog-content>
+
+    </form>
+
+</md-dialog>

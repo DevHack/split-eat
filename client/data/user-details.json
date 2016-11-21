@@ -1,0 +1,62 @@
+[
+  {
+    "_id": "58186bcd41815e557bfdf349",
+    "userid": 1,
+    "name": "Debayan",
+    "groupies": [
+      {
+        "groupieid": 1,
+        "outstanding": 4926.866666666667
+      }
+    ],
+    "image": "images/debayan.jpg"
+  },
+  {
+    "_id": "58186bcd41815e557bfdf34a",
+    "userid": 2,
+    "name": "IRC",
+    "groupies": [
+      {
+        "groupieid": 1,
+        "outstanding": 3784.2000000000003
+      }
+    ],
+    "image": "images/irc.jpg"
+  },
+  {
+    "_id": "58186bcd41815e557bfdf34b",
+    "userid": 3,
+    "name": "Arnab",
+    "groupies": [
+      {
+        "groupieid": 1,
+        "outstanding": 5988.866666666667
+      }
+    ],
+    "image": "images/arnab.jpg"
+  },
+  {
+    "_id": "58186bcd41815e557bfdf34c",
+    "userid": 4,
+    "name": "Swarnadipa",
+    "groupies": [
+      {
+        "groupieid": 1,
+        "outstanding": -6403.799999999999
+      }
+    ],
+    "image": "images/swarnadipa.jpg"
+  },
+  {
+    "_id": "58186bcd41815e557bfdf34d",
+    "userid": 5,
+    "name": "Debjyoti",
+    "groupies": [
+      {
+        "groupieid": 1,
+        "outstanding": -8296.133333333333
+      }
+    ],
+    "image": "images/debjyoti.jpg"
+  }
+]

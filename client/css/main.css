@@ -1,3 +1,36 @@
-.toolbardemoBasicUsage md-toolbar md-icon.md-default-theme {
-    color: white;
+md-content.md-default-theme {
+    background-color: #eee;
+}
+
+md-toolbar .md-button.md-default-theme {
+    border-radius: 99%;
+}
+
+md-toolbar:not(.md-hue-1),
+.md-fab {
+    fill: #fff;
+}
+
+.md-errors-spacer {
+    display: none;
+}
+
+.content-wrapper {
+    overflow: auto;
+}
+
+.card-wrapper {
+    width: 100%;
+}
+
+.input-field {
+    width: 100%;
+}
+
+.label {
+    margin: 10px 0px;
+}
+
+.transaction-container {
+    margin: 0 !important;
 }
