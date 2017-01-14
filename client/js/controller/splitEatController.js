@@ -1,13 +1,12 @@
 app.controller('splitEatController', ['$scope', '$mdBottomSheet', '$mdSidenav', '$mdDialog', '$http', 'usersService', function ($scope, $mdBottomSheet, $mdSidenav, $mdDialog, $http, usersService) {
-
-    $scope.init = function () {
+    var self = this;
+    self.loadData = function () {
         $scope.userDetails = null;
         usersService.getData().then(function (response) {
             $scope.userDetails = response;
-            console.log($scope.userDetails.data, $scope.imagePath);
         });
     };
-    $scope.init();
+    self.loadData();
 
     $scope.showDialog = function () {
         console.log("called");
@@ -17,5 +16,5 @@ app.controller('splitEatController', ['$scope', '$mdBottomSheet', '$mdSidenav', 
             controllerAs: 'vm'
         });
     };
-
+    $scope.$on("dataUpdated", self.loadData);
 }]);

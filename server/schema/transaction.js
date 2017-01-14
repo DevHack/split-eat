@@ -18,7 +18,6 @@
         });
 
     transactionSchema.pre('save', function (next) {
-        console.log("on pre")
         this.updateUser((function () {
             if (this.transactionid) {
                 next();

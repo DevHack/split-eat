@@ -2,7 +2,7 @@ app.service('usersService', function ($http) {
     this.getData = function () {
         return $http({
             method: 'GET',
-            url: 'data/user-details.json'
+            url: 'http://localhost:4000/user'
         }).success(function (data) {
             return data;
         }).error(function () {

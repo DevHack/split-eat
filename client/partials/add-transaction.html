@@ -1,12 +1,12 @@
 <md-dialog>
 
-    <form name="transactionForm" class="transaction-container" data-ng-submit="vm.handleSubmit()">
+    <form name="transactionForm" class="transaction-container" data-ng-submit="handleSubmit()">
 
         <md-toolbar>
             <div class="md-toolbar-tools">
                 <h2>Add transaction</h2>
                 <span flex></span>
-                <md-button type="button" class="md-icon-button" ng-click="vm.handleCancel(); $event.stopPropagation();">
+                <md-button type="button" class="md-icon-button" ng-click="handleCancel(); $event.stopPropagation();">
                     <ng-md-icon icon="close"></ng-md-icon>
                 </md-button>
             </div>
@@ -16,12 +16,13 @@
 
             <md-input-container flex="" class="input-field">
                 <label>Description</label>
-                <input ng-model="vm.descrption" required>
+                <input ng-model="descrption" required>
             </md-input-container>
 
             <md-input-container flex="" class="input-field">
                 <label>Cost</label>
-                <input ng-model="vm.cost" type="password" required>
+                <input type="text" onkeypress='return event.charCode >= 48 && event.charCode <= 57' ng-model="cost"
+                       required>
             </md-input-container>
             <div class="payee-container">
                 <md-label class="label" layout="row"><b>Payee</b></md-label>
@@ -30,7 +31,7 @@
                         <div>
                             <div layout="row" layout-wrap flex>
                                 <div flex="50" ng-repeat="item in items.data">
-                                    <md-checkbox ng-click="toggle(item, selected)">
+                                    <md-checkbox ng-model="item.payee" ng-click="toggle(item, selected)" required>
                                         {{ item.name }}
                                     </md-checkbox>
                                 </div>
@@ -46,8 +47,8 @@
                     <div flex="100" flex-gt-sm="50" layout="column">
                         <div>
                             <div layout="row" layout-wrap flex>
-                                <div flex="50" ng-repeat="item in items.data">
-                                    <md-checkbox ng-click="toggle(item, selected)">
+                                <div flex="50" ng-model="participents" ng-repeat="item in items.data">
+                                    <md-checkbox ng-model="item.participants" ng-click="toggle(item, selected)">
                                         {{ item.name }}
                                     </md-checkbox>
                                 </div>
@@ -56,13 +57,18 @@
                     </div>
                 </div>
             </div>
+            <div flex-gt-xs>
+                <h4>Date</h4>
+                <md-datepicker ng-model="myDate" md-placeholder="Enter date"></md-datepicker>
+            </div>
             <div class="md-actions">
                 <md-button type="submit" class="md-primary"
                            ng-class="{'md-raised md-hue-1': (loginForm.$dirty && loginForm.$valid) }"
-                           aria-label="OK">OK
+                           ng-click="addTransacion()"
+                           aria-label="OK">ADD
                 </md-button>
 
-                <md-button type="button" ng-click="vm.handleCancel(); $event.stopPropagation();"
+                <md-button type="button" ng-click="handleCancel(); $event.stopPropagation();"
                            aria-label="Cancel">Cancel
                 </md-button>
             </div>
