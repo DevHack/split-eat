@@ -34,3 +34,20 @@ md-toolbar:not(.md-hue-1),
 .transaction-container {
     margin: 0 !important;
 }
+
+.payee-checkbox,
+.payee-cost-input {
+    width: 48%;
+}
+
+.payee-checkbox {
+    margin: 10px 0;
+}
+
+.payee-cost-input {
+    margin: 0px;
+}
+
+.payee-container {
+    width: 100%;
+}

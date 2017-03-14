@@ -6,7 +6,7 @@
             <div class="md-toolbar-tools">
                 <h2>Add transaction</h2>
                 <span flex></span>
-                <md-button type="button" class="md-icon-button" ng-click="handleCancel(); $event.stopPropagation();">
+                <md-button type="button" class="md-icon-button" ng-click="closeDialog(); $event.stopPropagation();">
                     <ng-md-icon icon="close"></ng-md-icon>
                 </md-button>
             </div>
@@ -18,26 +18,25 @@
                 <label>Description</label>
                 <input ng-model="descrption" required>
             </md-input-container>
-
-            <md-input-container flex="" class="input-field">
-                <label>Cost</label>
-                <input type="text" onkeypress='return event.charCode >= 48 && event.charCode <= 57' ng-model="cost"
-                       required>
-            </md-input-container>
             <div class="payee-container">
                 <md-label class="label" layout="row"><b>Payee</b></md-label>
                 <div layout="row" layout-wrap>
-                    <div flex="100" flex-gt-sm="50" layout="column">
-                        <div>
-                            <div layout="row" layout-wrap flex>
-                                <div flex="50" ng-repeat="item in items.data">
-                                    <md-checkbox ng-model="item.payee" ng-click="toggle(item, selected)" required>
-                                        {{ item.name }}
-                                    </md-checkbox>
-                                </div>
+                    <!--<div flex="100" flex-gt-sm="50" layout="column">-->
+                    <!--<div layout="row" layout-wrap flex>-->
+                    <div class="payee-container" ng-repeat="item in items">
+                        <md-checkbox class="payee-checkbox" ng-model="item.payee" ng-click="toggle(item, selected)"
+                                     required>
+                            {{ item.username }}
+                        </md-checkbox>
+                        <md-input-container class="input-field payee-cost-input" ng-show="exists(item, selected)">
+                            <label>Cost</label>
+                            <input type="text"
+                                   onkeypress='return event.charCode >= 48 && event.charCode <= 57'
+                                   ng-model="item.cost">
+                        </md-input-container>
                             </div>
-                        </div>
-                    </div>
+                    <!--</div>-->
+                    <!--</div>-->
                 </div>
             </div>
             <md-divider></md-divider>
@@ -47,9 +46,9 @@
                     <div flex="100" flex-gt-sm="50" layout="column">
                         <div>
                             <div layout="row" layout-wrap flex>
-                                <div flex="50" ng-model="participents" ng-repeat="item in items.data">
+                                <div flex="50" ng-model="participents" ng-repeat="item in items">
                                     <md-checkbox ng-model="item.participants" ng-click="toggle(item, selected)">
-                                        {{ item.name }}
+                                        {{ item.username }}
                                     </md-checkbox>
                                 </div>
                             </div>
@@ -68,7 +67,7 @@
                            aria-label="OK">ADD
                 </md-button>
 
-                <md-button type="button" ng-click="handleCancel(); $event.stopPropagation();"
+                <md-button type="button" ng-click="closeDialog(); $event.stopPropagation();"
                            aria-label="Cancel">Cancel
                 </md-button>
             </div>
@@ -77,3 +76,4 @@
     </form>
 
 </md-dialog>
+
