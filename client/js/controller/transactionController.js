@@ -12,6 +12,7 @@ app.controller("transactionController", ["$scope", "$mdDialog", "usersService", 
         $scope.payee = null;
         $scope.participents = null;
         $scope.selected = [];
+        $scope.myDate = null;
         $scope.items = usersService.getData();
     };
 
@@ -20,45 +21,46 @@ app.controller("transactionController", ["$scope", "$mdDialog", "usersService", 
     };
 
     $scope.addTransacion = function () {
-        self.getPayee();
-        // var config = {
-        //     headers: {
-        //         'Content-Type': undefined
-        //     }
-        // };
-        // $scope.payee = self.getPayee("payee");
-        // $scope.participents = self.getPayee("participants");
-        // var transactionObj = {
-        //     "description": $scope.descrption,
-        //     "cost": parseInt($scope.cost, 10),
-        //     "payee": $scope.payee,
-        //     "transactionDate": $scope.myDate.toString(),
-        //     "participants": $scope.participents
-        // };
-        // $http({
-        //     url: "http://localhost:4000/saveTransaction/1",
-        //     method: "POST",
-        //     data: transactionObj,
-        //     config: config
-        // }).success(function (data) {
-        //     $rootScope.$broadcast("dataUpdated");
-        //     return data;
-        // }).error(function () {
-        //     alert("error");
-        //     return null;
-        // });
+        var config = {
+            headers: {
+                'Content-Type': undefined
+            }
+        };
+        $http({
+            url: "https://orbzn6b2lk.execute-api.us-west-2.amazonaws.com/prod/createtransaction",
+            method: "POST",
+            data: self.getPayee(),
+            config: config
+        }).success(function (data) {
+            $rootScope.$broadcast("dataUpdated");
+            return data;
+        }).error(function () {
+            alert("error");
+            return null;
+        });
         $scope.closeDialog();
     };
 
-    self.getPayee = function (type) {
+    self.getPayee = function () {
         console.log($scope.items);
-        // var a =($scope.items.map(function (elem, index) {
-        //     if (elem[type]) {
-        //         return index + 1;
-        //     }
-        // }).filter(function (item) {
-        //     return typeof item === 'number';
-        // }));
+        console.log($scope.descrption);
+        var participants = [];
+        var payees = [];
+        $scope.items.map(function (elem) {
+            if (elem.participants) {
+                participants.push(elem.userId);
+            }
+            if (elem.payee) {
+                payees.push({paidAmount: parseInt(elem.cost, 10), payee: elem.userId});
+            }
+        });
+        return {
+            "transactionDate": $scope.myDate.toLocaleDateString(),
+            "description": $scope.descrption,
+            "participants": participants,
+            "cost": payees,
+            "groupieId": "panchobanjyon"
+        }
     };
 
     $scope.toggle = function (item, list) {

@@ -47,7 +47,8 @@
                         <div>
                             <div layout="row" layout-wrap flex>
                                 <div flex="50" ng-model="participents" ng-repeat="item in items">
-                                    <md-checkbox ng-model="item.participants" ng-click="toggle(item, selected)">
+                                    <md-checkbox ng-model="item.participants"
+                                    ">
                                         {{ item.username }}
                                     </md-checkbox>
                                 </div>
