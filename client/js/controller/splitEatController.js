@@ -6,7 +6,6 @@ app.controller('splitEatController', ['$scope', '$mdBottomSheet', '$mdSidenav', 
 
     self.loadData = function () {
         $scope.userDetails = usersService.getData();
-        $scope.$apply();
         console.log($scope.userDetails);
     };
 

@@ -32,6 +32,7 @@ md-toolbar:not(.md-hue-1),
 }
 
 .transaction-container {
+    max-width: 700px;
     margin: 0 !important;
 }
 
