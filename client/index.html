@@ -1,85 +1,71 @@
 <html lang="en" ng-app="SplitEatApp">
 <head>
     <!--<link rel="stylesheet" href="//ajax.googleapis.com/ajax/libs/angular_material/1.0.4/angular-material.min.css">-->
+    <meta name="viewport" content="width=device-width ,initial-scale=1.0"/>
     <link rel="stylesheet" href="lib/angular-material/angular-material.min.css">
     <link rel="stylesheet" href="css/main.css">
 
 </head>
 <body layout="row" ng-controller="splitEatController">
-
-<div layout="column" class="relative" layout-fill role="main">
-    <md-toolbar ng-show="!showSearch" class="md-whiteframe-z2">
+<md-content class="main-container md-primary" layout-fill role="main" flex layout="column">
+    <md-toolbar class="md-whiteframe-z2">
         <div class="md-toolbar-tools">
             <h3>
                 Split Eat
             </h3>
             <span flex></span>
-        </div>
-    </md-toolbar>
-    <md-toolbar class="md-hue-1 md-whiteframe-z2" ng-show="showSearch">
-        <div class="md-toolbar-tools">
-            <md-button ng-click="showSearch = !showSearch" aria-label="Back"
-                       class="md-icon-button md-primary md-button md-ink-ripple">
-                <ng-md-icon icon="arrow_back"></ng-md-icon>
-            </md-button>
-            <md-input-container md-theme="input" flex>
-                <label>&nbsp;</label>
-                <input ng-model="search.who" placeholder="Search">
-            </md-input-container>
-            <md-button aria-label="Search" ng-click="showSearch = !showSearch"
-                       class="md-icon-button md-primary md-button md-ink-ripple">
-                <md-icon icon="search"></md-icon>
+            <md-label class="md-primary md-raised md-hue-2">Pay</md-label>
+            <md-button class="md-primary md-raised md-hue-2 payment-btn" md-title="Payment"
+                       ng-click="showPaymentDialog()">
+                <md-tooltip md-direction="bottom">Pay</md-tooltip>
+                <ng-md-icon class="payment-icon" icon="payment"></ng-md-icon>
             </md-button>
         </div>
-
     </md-toolbar>
-    <div class="content-wrapper">
-        <section layout="row" flex="">
-            <md-content flex="" layout-padding="" layout="row">
-                <div class="card-wrapper" layout-align="top center">
-                    <md-card class="atlas-widget medium" md-whiteframe="3">
-                        <md-toolbar class="md-primary md-hue-2 toolbar-header">
-                            <md-card-header>
-                                <md-card-header-text layout="column" layout-align="center">
-                                    <span class="md-title">Outstandings</span>
-                                </md-card-header-text>
-                            </md-card-header>
-                        </md-toolbar>
+    <md-content class="content-wrapper md-primary" flex="" layout-padding="" layout="row">
+        <div class="card-wrapper" layout-align="top center">
+            <md-card class="atlas-widget medium" md-whiteframe="3">
+                <md-toolbar class="md-primary md-hue-2 toolbar-header">
+                    <md-card-header>
+                        <md-card-header-text layout="column" layout-align="center">
+                            <span class="md-title">Outstandings</span>
+                        </md-card-header-text>
+                    </md-card-header>
+                </md-toolbar>
 
-                        <div class="widget-content">
-                            <md-list class="atlas-dense" ng-model="userDetails" ng-repeat="user in userDetails">
-                                <md-list-item class="md-2-line">
-                                    <img ng-src="{{user.image}}" class="md-avatar"/>
-                                    <div class="md-list-item-text">
-                                        <h3>{{user.username}}</h3>
-                                        <p><b>Outstanding:{{user.groupies[0].outstanding.toFixed(2)}}</b></p>
-                                    </div>
-                                    <md-divider ng-if="!$last"></md-divider>
-                                </md-list-item>
-                            </md-list>
-                        </div>
-                    </md-card>
+                <div class="widget-content">
+                    <md-list class="users-list" ng-model="userDetails" ng-repeat="user in userDetails">
+                        <md-list-item class="md-2-line">
+                            <img ng-src="{{user.image}}" class="md-avatar"/>
+                            <div class="md-list-item-text">
+                                <h3 ng-bind-html="user.username | unsafe"></h3>
+                                <p>
+                                    <b ng-bind-html="'Outstanding:'+user.groupies[0].outstanding.toFixed(2) | unsafe"></b>
+                                </p>
+                            </div>
+                            <md-divider ng-if="!$last"></md-divider>
+                        </md-list-item>
+                    </md-list>
                 </div>
-            </md-content>
-        </section>
-    </div>
-    <md-button class="md-fab md-fab-bottom-right" md-title="Add" ng-click="showDialog()">
+            </md-card>
+        </div>
+    </md-content>
+    <md-button class="md-fab md-fab-bottom-right" md-title="Add Transaction" ng-click="showAddTransactionDialog()">
         <md-tooltip md-direction="left">Add</md-tooltip>
         <ng-md-icon class="add-icon" icon="add"></ng-md-icon>
     </md-button>
-</div>
-
+</md-content>
 
 <script src="lib/angular/angular.min.js"></script>
 <script src="lib/angular-animate/angular-animate.min.js"></script>
 <script src="lib/angular-aria/angular-aria.min.js"></script>
 <script src="lib/angular-material/angular-material.min.js"></script>
 <script src="lib/angular-material-icons/angular-material-icons.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.12.0/moment.js"></script>
 <script src="js/app.js"></script>
 <script src="js/services/splitEatService.js"></script>
-<script src="js/controller/splitEatController.js"></script>
-<script src="js/controller/transactionController.js"></script>
+<script src="js/controller/split_eat_ontroller.js"></script>
+<script src="js/controller/transaction_controller.js"></script>
+<script src="js/controller/payment_controller.js"></script>
 </body>
 </html>
 

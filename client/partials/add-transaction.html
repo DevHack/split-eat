@@ -1,7 +1,5 @@
 <md-dialog>
-
-    <form name="transactionForm" class="transaction-container" data-ng-submit="handleSubmit()">
-
+    <form name="transactionForm" class="transaction-container md-primary" data-ng-submit="handleSubmit()">
         <md-toolbar>
             <div class="md-toolbar-tools">
                 <h2>Add transaction</h2>
@@ -11,9 +9,7 @@
                 </md-button>
             </div>
         </md-toolbar>
-
         <md-dialog-content class="md-padding">
-
             <md-input-container flex="" class="input-field">
                 <label>Description</label>
                 <input ng-model="descrption" required>
@@ -21,8 +17,6 @@
             <div class="payee-container">
                 <md-label class="label" layout="row"><b>Payee</b></md-label>
                 <div layout="row" layout-wrap>
-                    <!--<div flex="100" flex-gt-sm="50" layout="column">-->
-                    <!--<div layout="row" layout-wrap flex>-->
                     <div class="payee-container" ng-repeat="item in items">
                         <md-checkbox class="payee-checkbox" ng-model="item.payee" ng-click="toggle(item, selected)"
                                      required>
@@ -34,47 +28,35 @@
                                    onkeypress='return event.charCode >= 48 && event.charCode <= 57'
                                    ng-model="item.cost">
                         </md-input-container>
-                            </div>
-                    <!--</div>-->
-                    <!--</div>-->
+                    </div>
                 </div>
             </div>
             <md-divider></md-divider>
             <div class="participant-container">
                 <md-label class="label" layout="row"><b>Participants</b></md-label>
-                <div layout="row" layout-wrap>
-                    <div flex="100" flex-gt-sm="50" layout="column">
-                        <div>
-                            <div layout="row" layout-wrap flex>
-                                <div flex="50" ng-model="participents" ng-repeat="item in items">
-                                    <md-checkbox ng-model="item.participants"
-                                    ">
-                                        {{ item.username }}
-                                    </md-checkbox>
-                                </div>
-                            </div>
-                        </div>
+                <div layout="row" layout-wrap flex>
+                    <div flex="50" ng-model="participents" ng-repeat="item in items">
+                        <md-checkbox ng-model="item.participants">
+                            {{ item.username }}
+                        </md-checkbox>
                     </div>
                 </div>
             </div>
+            <md-divider></md-divider>
             <div flex-gt-xs>
                 <h4>Date</h4>
-                <md-datepicker ng-model="myDate" md-placeholder="Enter date"></md-datepicker>
+                <md-datepicker ng-model="date" md-placeholder="Enter date" md-open-on-focus></md-datepicker>
             </div>
-            <div class="md-actions">
-                <md-button type="submit" class="md-primary"
-                           ng-class="{'md-raised md-hue-1': (loginForm.$dirty && loginForm.$valid) }"
-                           ng-click="addTransacion()"
-                           aria-label="OK">ADD
+            <md-divider></md-divider>
+            <div class="">
+                <md-button type="button" class="md-raised md-primary" ng-click="addTransacion()">ADD
                 </md-button>
 
-                <md-button type="button" ng-click="closeDialog(); $event.stopPropagation();"
-                           aria-label="Cancel">Cancel
+                <md-button type="button" class="md-raised md-primary"
+                           ng-click="closeDialog(); $event.stopPropagation();">Cancel
                 </md-button>
             </div>
         </md-dialog-content>
-
     </form>
-
 </md-dialog>
 

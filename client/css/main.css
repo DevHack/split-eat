@@ -1,5 +1,6 @@
 md-content.md-default-theme {
     background-color: #eee;
+    position: fixed;
 }
 
 md-toolbar .md-button.md-default-theme {
@@ -16,7 +17,7 @@ md-toolbar:not(.md-hue-1),
 }
 
 .content-wrapper {
-    overflow: auto;
+    overflow: hidden;
 }
 
 .card-wrapper {
@@ -50,5 +51,33 @@ md-toolbar:not(.md-hue-1),
 }
 
 .payee-container {
+    width: 100%;
+}
+
+.main-container {
+    overflow: hidden;
+    height: 100%;
+}
+
+@media (min-width: 320px) and (max-width: 500px) {
+    .widget-content {
+        height: 300px !important;
+        overflow: auto;
+    }
+
+    md-dialog {
+        min-height: 100%;
+        min-width: 100%;
+        border-radius: 0;
+    }
+}
+
+.payment-wrapper {
+    min-height: 400px;
+}
+
+.payment-container {
+    padding: 10px;
+    float: right;
     width: 100%;
 }
