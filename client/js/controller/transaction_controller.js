@@ -16,11 +16,9 @@
             $scope.selected = [];
             $scope.date = null;
             $scope.items = usersService.getData();
+            $scope.shouldEnable = false;
         };
 
-        $scope.closeDialog = function () {
-            $mdDialog.hide();
-        };
 
         $scope.addTransacion = function () {
             var config = {
@@ -34,7 +32,7 @@
                 data: self.getTransactionObj(),
                 config: config
             }).success(function (data) {
-                $rootScope.$broadcast("dataUpdated");
+                $rootScope.$broadcast("fetchData");
                 return data;
             }).error(function () {
                 alert("error");
@@ -42,12 +40,12 @@
             });
             $scope.closeDialog();
         };
-
+        $scope.closeDialog = function () {
+            $mdDialog.hide();
+        };
         self.getTransactionObj = function () {
-            console.log($scope.items);
-            console.log($scope.descrption);
-            var participants = [];
-            var payees = [];
+            var participants = [],
+                payees = [];
             $scope.items.map(function (elem) {
                 if (elem.participants) {
                     participants.push(elem.userId);
@@ -64,7 +62,6 @@
                 "groupieId": "panchobanjyon"
             }
         };
-
         $scope.toggle = function (item, list) {
             var idx = list.indexOf(item);
             if (idx > -1) {
@@ -77,6 +74,13 @@
         $scope.exists = function (item, list) {
             return list.indexOf(item) > -1;
         };
+
+        $scope.$watch($scope.descrption, function () {
+            console.log("okk", $scope.descrption);
+            if ($scope.descrption) {
+                $scope.shouldEnable = true;
+            }
+        });
 
         this.init();
     }

@@ -48,14 +48,15 @@
                 <md-datepicker ng-model="date" md-placeholder="Enter date" md-open-on-focus></md-datepicker>
             </div>
             <md-divider></md-divider>
-            <div class="">
-                <md-button type="button" class="md-raised md-primary" ng-click="addTransacion()">ADD
+            <md-content class="action-button-container">
+                <md-button type="button" class="md-raised md-primary" ng-click="addTransacion()"
+                           ng-disabled="shouldEnable">ADD
                 </md-button>
 
                 <md-button type="button" class="md-raised md-primary"
                            ng-click="closeDialog(); $event.stopPropagation();">Cancel
                 </md-button>
-            </div>
+            </md-content>
         </md-dialog-content>
     </form>
 </md-dialog>

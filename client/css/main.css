@@ -42,7 +42,7 @@ md-toolbar:not(.md-hue-1),
     width: 48%;
 }
 
-.payee-checkbox {
+.payee-checkbox, .payment-user {
     margin: 10px 0;
 }
 
@@ -73,6 +73,7 @@ md-toolbar:not(.md-hue-1),
 }
 
 .payment-wrapper {
+    max-width: 423px;
     min-height: 400px;
 }
 
@@ -80,4 +81,8 @@ md-toolbar:not(.md-hue-1),
     padding: 10px;
     float: right;
     width: 100%;
+}
+
+.action-button-container {
+    float: right;
 }

@@ -36,7 +36,7 @@
                 <div class="widget-content">
                     <md-list class="users-list" ng-model="userDetails" ng-repeat="user in userDetails">
                         <md-list-item class="md-2-line">
-                            <img ng-src="{{user.image}}" class="md-avatar"/>
+                            <img ng-src="{{'images/'+user.userId+'.jpg'}}" class="md-avatar"/>
                             <div class="md-list-item-text">
                                 <h3 ng-bind-html="user.username | unsafe"></h3>
                                 <p>

@@ -28,7 +28,13 @@
                 clickOutsideToClose: true
             });
         };
+
+        $scope.closeDialog = function () {
+            $mdDialog.hide();
+        };
+
         $scope.$on("dataUpdated", self.loadData);
+        $scope.$on("fetchData", usersService.setData);
         self.init();
     }
 
