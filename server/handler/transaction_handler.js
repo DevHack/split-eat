@@ -9,6 +9,7 @@
             var groupieId = parseInt(req.params.groupieId,10),
                 transactionDetails = req.body,
                 transaction = new transactionSchema();
+            console.log(transactionDetails);
             transaction.transactionDate = transactionDetails.transactionDate;
             transaction.description = transactionDetails.description;
             transaction.payee = transactionDetails.payee;

@@ -1,0 +1,28 @@
+<md-dialog class="payment-wrapper">
+    <md-toolbar>
+        <div class="md-toolbar-tools">
+            <h2>Payment</h2>
+            <span flex></span>
+            <md-button type="button" class="md-icon-button" ng-click="closeDialog(); $event.stopPropagation();">
+                <ng-md-icon icon="close"></ng-md-icon>
+            </md-button>
+        </div>
+    </md-toolbar>
+    <div layout="row" layout-wrap>
+        <div class="payment-container" ng-repeat="user in users">
+            <md-checkbox class="payment-user" ng-model="user.payingUser" ng-disabled="isAnyOneSelected()">
+                <div ng-bind-html="user.username | unsafe"></div>
+            </md-checkbox>
+            <md-input-container class="input-field payee-cost-input" ng-show="user.payingUser">
+                <label>Amount</label>
+                <input type="text"
+                       onkeypress='return event.charCode >= 48 && event.charCode <= 57'
+                       ng-model="user.amount">
+            </md-input-container>
+        </div>
+        <md-divider></md-divider>
+        <md-button type="button" class="md-raised md-primary" ng-click="">Pay
+        </md-button>
+    </div>
+</md-dialog>
+<!--ng-disabled="'disable'+$index"-->

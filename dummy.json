@@ -1,0 +1,23 @@
+[
+  {
+    "groupieid": "1234",
+    "name": "Bhuribhoj",
+    "members": [
+      {
+        userid: 1
+      },
+      {
+        userid: 2
+      },
+      {
+        userid: 3
+      },
+      {
+        userid: 4
+      },
+      {
+        userid: 5
+      }
+    ]
+  }
+]

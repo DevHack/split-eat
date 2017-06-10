@@ -1,0 +1,88 @@
+md-content.md-default-theme {
+    background-color: #eee;
+    position: fixed;
+}
+
+md-toolbar .md-button.md-default-theme {
+    border-radius: 99%;
+}
+
+md-toolbar:not(.md-hue-1),
+.md-fab {
+    fill: #fff;
+}
+
+.md-errors-spacer {
+    display: none;
+}
+
+.content-wrapper {
+    overflow: hidden;
+}
+
+.card-wrapper {
+    width: 100%;
+}
+
+.input-field {
+    width: 100%;
+}
+
+.label {
+    margin: 10px 0px;
+}
+
+.transaction-container {
+    max-width: 700px;
+    margin: 0 !important;
+}
+
+.payee-checkbox,
+.payee-cost-input {
+    width: 48%;
+}
+
+.payee-checkbox, .payment-user {
+    margin: 10px 0;
+}
+
+.payee-cost-input {
+    margin: 0px;
+}
+
+.payee-container {
+    width: 100%;
+}
+
+.main-container {
+    overflow: hidden;
+    height: 100%;
+}
+
+@media (min-width: 320px) and (max-width: 500px) {
+    .widget-content {
+        height: 300px !important;
+        overflow: auto;
+    }
+
+    md-dialog {
+        min-height: 100%;
+        min-width: 100%;
+        border-radius: 0;
+    }
+}
+
+.payment-wrapper {
+    max-width: 423px;
+    min-height: 400px;
+}
+
+.payment-container {
+    padding: 10px;
+    float: right;
+    width: 100%;
+}
+
+.action-button-container {
+    float: right;
+}

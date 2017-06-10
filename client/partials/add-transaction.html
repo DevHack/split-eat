@@ -1,0 +1,63 @@
+<md-dialog>
+    <form name="transactionForm" class="transaction-container md-primary" data-ng-submit="handleSubmit()">
+        <md-toolbar>
+            <div class="md-toolbar-tools">
+                <h2>Add transaction</h2>
+                <span flex></span>
+                <md-button type="button" class="md-icon-button" ng-click="closeDialog(); $event.stopPropagation();">
+                    <ng-md-icon icon="close"></ng-md-icon>
+                </md-button>
+            </div>
+        </md-toolbar>
+        <md-dialog-content class="md-padding">
+            <md-input-container flex="" class="input-field">
+                <label>Description</label>
+                <input ng-model="descrption" required>
+            </md-input-container>
+            <div class="payee-container">
+                <md-label class="label" layout="row"><b>Payee</b></md-label>
+                <div layout="row" layout-wrap>
+                    <div class="payee-container" ng-repeat="item in items">
+                        <md-checkbox class="payee-checkbox" ng-model="item.payee" ng-click="toggle(item, selected)"
+                                     required>
+                            {{ item.username }}
+                        </md-checkbox>
+                        <md-input-container class="input-field payee-cost-input" ng-show="exists(item, selected)">
+                            <label>Cost</label>
+                            <input type="text"
+                                   onkeypress='return event.charCode >= 48 && event.charCode <= 57'
+                                   ng-model="item.cost">
+                        </md-input-container>
+                    </div>
+                </div>
+            </div>
+            <md-divider></md-divider>
+            <div class="participant-container">
+                <md-label class="label" layout="row"><b>Participants</b></md-label>
+                <div layout="row" layout-wrap flex>
+                    <div flex="50" ng-model="participents" ng-repeat="item in items">
+                        <md-checkbox ng-model="item.participants">
+                            {{ item.username }}
+                        </md-checkbox>
+                    </div>
+                </div>
+            </div>
+            <md-divider></md-divider>
+            <div flex-gt-xs>
+                <h4>Date</h4>
+                <md-datepicker ng-model="date" md-placeholder="Enter date" md-open-on-focus></md-datepicker>
+            </div>
+            <md-divider></md-divider>
+            <md-content class="action-button-container">
+                <md-button type="button" class="md-raised md-primary" ng-click="addTransacion()"
+                           ng-disabled="shouldEnable">ADD
+                </md-button>
+
+                <md-button type="button" class="md-raised md-primary"
+                           ng-click="closeDialog(); $event.stopPropagation();">Cancel
+                </md-button>
+            </md-content>
+        </md-dialog-content>
+    </form>
+</md-dialog>
+
